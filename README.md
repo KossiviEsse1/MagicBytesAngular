@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.4.
 
+This app started as a generalized solution to the My Magic Bytes Cryptography problem from 247CTF.com. And is in development to expand to more. Follow Basic Angular procedures to develop locally.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
