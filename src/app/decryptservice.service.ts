@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MagicBytesData } from './MagicBytesData';
+import { saveAs } from 'file-saver'
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -68,6 +69,6 @@ export class DecryptserviceService {
     let fileMimeType: string = this.fileExtensionMimeTypeMap[fileExtension];
     var hexString = result["body"]["event-fileHex"];
     let blob = this.convertHexStringToBlob(hexString, fileMimeType);
-    //saveAs(blob, "YourFile"+fileExtension);
+    saveAs(blob, "YourFile"+fileExtension);
   }
 }
