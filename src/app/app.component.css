@@ -10,3 +10,13 @@ header {
 .content {
   padding: var(--content-padding);
 }
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+  position: relative;
+  margin-left: 50px;
+}
