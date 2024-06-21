@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { ThumbnailComponent } from '../thumbnail/thumbnail.component';
 import { ThumbnailDetails } from '../thumbnail-details';
 import { CommonModule } from '@angular/common';
+import { MagicByteTableComponent } from '../magic-byte-table/magic-byte-table.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ThumbnailComponent],
+  imports: [CommonModule, ThumbnailComponent, MagicByteTableComponent],
   template: `
   <section>
     <article>
