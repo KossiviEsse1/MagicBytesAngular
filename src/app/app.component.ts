@@ -8,7 +8,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   template: `
   <main>
     <header class="brand-name">
-      <h1><a [routerLink]="[]">XOR Decrypter</a></h1>
+      <h1><a [routerLink]="[]"> XOR Decrypter </a></h1>
     </header>
     <section class="content">
       <router-outlet></router-outlet>
