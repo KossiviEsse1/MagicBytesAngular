@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { MagicBytesData } from '../MagicBytesData';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -24,7 +24,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr
               mat-row
-              (click)="updateClickedRow(row)"
+              (click)="sendDataToDecrypterTool(row)"
               [class.row-selected]="clickedRow == row"
               *matRowDef="let row; columns: displayedColumns"
             ></tr>
@@ -40,21 +40,23 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
   styleUrl: './magic-byte-table.component.css'
 })
 export class MagicByteTableComponent implements AfterViewInit{
+
+  @Output() dataEvent = new EventEmitter<MagicByte>();
+
   magicBytesData = new MagicBytesData();
   magicBytesTableData = this.magicBytesData.getMagicBytesData();
   dataSource = new MatTableDataSource<MagicByte>(this.magicBytesTableData);
-
   displayedColumns = ['file_extension', 'hex'];
   clickedRow: MagicByte = {}
 
-  updateClickedRow(row: MagicByte): void {
+  sendDataToDecrypterTool(row: MagicByte): void {
     if(this.clickedRow == row){
       this.clickedRow = {};
-      console.log(this.clickedRow);
     } else {
       this.clickedRow = row;
-      console.log(this.clickedRow);
     }
+    const data = this.clickedRow;
+    this.dataEvent.emit(data);
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

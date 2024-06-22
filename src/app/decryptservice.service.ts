@@ -20,7 +20,7 @@ export class DecryptserviceService {
 
   constructor(private http: HttpClient) { }
 
-  convertFileToHexString(fileBuffer: ArrayBuffer): string {
+  convertFileToHexString(fileBuffer: any): string {
     const hexString =  Array.from(new Uint8Array(fileBuffer as ArrayBuffer))
     .map(b => b.toString(16).padStart(2, '0'))
     .join('');
@@ -59,16 +59,25 @@ export class DecryptserviceService {
   decryptFile(data_: any){
     let params = {
       key: "fileDecrypter",
-      fileHex: data_.fileHex,
-      magicBytes: data_.magicBytes
+      fileHex: data_.controls.fileHexString.value,
+      magicBytes: data_.controls.fileMagicBytes.value
     };
+    console.log(params);
     return this.http.post(this.baseURL, params, httpOptions);
   }
 
-  downloadDecryptedFile(result: any, fileExtension: string): void {
-    let fileMimeType: string = this.fileExtensionMimeTypeMap[fileExtension];
-    var hexString = result["body"]["event-fileHex"];
-    let blob = this.convertHexStringToBlob(hexString, fileMimeType);
-    saveAs(blob, "YourFile"+fileExtension);
+  downloadDecryptedFile(result: any, fileExtension: string | null): void {
+    if(fileExtension == null) {
+      alert("No File Extension Selected");
+    } else if(result['errorMessage']){
+      alert("Looks Like There Was An Error, Please Try Again! :D");
+    } else {
+      console.log(result);
+      let fileMimeType: string = this.fileExtensionMimeTypeMap[fileExtension];
+      var hexString = result["body"]["event-fileHex"];
+      let blob = this.convertHexStringToBlob(hexString, fileMimeType);
+      saveAs(blob, "YourFile"+fileExtension);
+    }
+
   }
 }
