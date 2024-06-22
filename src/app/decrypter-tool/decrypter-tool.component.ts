@@ -67,7 +67,7 @@ export class DecrypterToolComponent {
       const hexString = this.decrypterService.convertFileToHexString(reader.result);
       this.decryptForm.patchValue({
         fileHexString: hexString
-      })
+      });
       if(this.formIsFilled()) {
         this.disabled = false;
       }
@@ -77,7 +77,6 @@ export class DecrypterToolComponent {
   }
 
   createDecryptedFile() {
-    console.log(this.decryptForm);
     this.decrypterService.decryptFile(this.decryptForm).subscribe(
       res => {
         this.decrypterService
