@@ -62,7 +62,6 @@ export class DecryptserviceService {
       fileHex: data_.controls.fileHexString.value,
       magicBytes: data_.controls.fileMagicBytes.value
     };
-    console.log(params);
     return this.http.post(this.baseURL, params, httpOptions);
   }
 
@@ -72,7 +71,6 @@ export class DecryptserviceService {
     } else if(result['errorMessage']){
       alert("Looks Like There Was An Error, Please Try Again! :D");
     } else {
-      console.log(result);
       let fileMimeType: string = this.fileExtensionMimeTypeMap[fileExtension];
       var hexString = result["body"]["event-fileHex"];
       let blob = this.convertHexStringToBlob(hexString, fileMimeType);
