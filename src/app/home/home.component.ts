@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { ThumbnailComponent } from '../thumbnail/thumbnail.component';
 import { ThumbnailDetails } from '../thumbnail-details';
 import { CommonModule } from '@angular/common';
+import { MagicByteTableComponent } from '../magic-byte-table/magic-byte-table.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ThumbnailComponent],
+  imports: [CommonModule, ThumbnailComponent, MagicByteTableComponent],
   template: `
   <section>
     <article>
@@ -30,17 +31,17 @@ export class HomeComponent {
   thumbnailDetailsList:ThumbnailDetails[] = [
     {
       step: 1,
-      photo: '/HowToUseDecrypterTool1.jpg',
+      photo: '/screenshot1.jpg',
       details: 'First, go to the Decrypter Tool',
     },
     {
       step: 2,
-      photo: '/HowToUseDecrypterTool1.jpg',
+      photo: '/screenshot2.jpg',
       details: 'Next, choose a file type/signature',
     },
     {
       step: 3,
-      photo: '/HowToUseDecrypterTool1.jpg',
+      photo: '/screenshot3.jpg',
       details: 'Upload your file & wait for download',
     }
   ]

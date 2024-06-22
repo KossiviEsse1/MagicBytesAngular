@@ -9,10 +9,10 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   <main>
     <header class="brand-name">
       <span>
-        <h1 class="left"><a [routerLink]="[]"> XOR Decrypter </a></h1>
+        <h1 class="left"><a [routerLink]="['/']"> XOR Decrypter </a></h1>
         <button class="primary right">Example</button>
         <button class="primary right">Encrypter</button>
-        <button class="primary right">Decrypter</button>
+        <button class="primary right" [routerLink]="['/decrypter']">Decrypter</button>
       </span>
     </header>
     <section class="content">
