@@ -31,17 +31,17 @@ export class HomeComponent {
   thumbnailDetailsList:ThumbnailDetails[] = [
     {
       step: 1,
-      photo: '/HowToUseDecrypterTool1.jpg',
+      photo: '/screenshot1.jpg',
       details: 'First, go to the Decrypter Tool',
     },
     {
       step: 2,
-      photo: '/HowToUseDecrypterTool1.jpg',
+      photo: '/screenshot2.jpg',
       details: 'Next, choose a file type/signature',
     },
     {
       step: 3,
-      photo: '/HowToUseDecrypterTool1.jpg',
+      photo: '/screenshot3.jpg',
       details: 'Upload your file & wait for download',
     }
   ]
