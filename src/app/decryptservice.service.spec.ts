@@ -21,26 +21,26 @@ describe('DecryptserviceService', () => {
     expect(service).toBeTruthy();
   });
 
-  fit('convertFileToHexString() should return a HexString from a FileBuffer', () => {
+  it('convertFileToHexString() should return a HexString from a FileBuffer', () => {
     let arrayBuff = new Uint8Array([1, 35, 69, 103, 137, 171, 205, 239]);
     let hexString = service.convertFileToHexString(arrayBuff);
     expect(hexString).toEqual("0123456789abcdef");
   });
 
-  fit('convertHexStringToBinaryString() should return a Binary array from a HexString', () => {
+  it('convertHexStringToBinaryString() should return a Binary array from a HexString', () => {
     let hexString = "0123456789abcdef";
     let binaryString = service.convertHexStringToBinaryString(hexString);
     expect(binaryString).toEqual("0000000100100011010001010110011110001001101010111100110111101111");
   });
 
-  fit('convertHexStringToBlob() should return an object', () => {
+  it('convertHexStringToBlob() should return an object', () => {
     let hexString = "0123456789abcdef";
     let mimeType = "jpg"
     let object = service.convertHexStringToBlob(hexString, mimeType);
     expect(typeof object).toEqual('object');
   });
 
-  fit('decryptFile() should make a post request', () => {
+  it('decryptFile() should make a post request', () => {
     let object = new FormGroup({
       fileHexString: new FormControl('0123456789abcdef'),
       fileMagicBytes: new FormControl('f8ddf8')
@@ -49,13 +49,13 @@ describe('DecryptserviceService', () => {
     expect(httpClientSpy.post).toHaveBeenCalled();
   });
 
-  fit('downloadDecryptedFile() should alert with null file extension', () => {
+  it('downloadDecryptedFile() should alert with null file extension', () => {
     spyOn(window, 'alert').and.callThrough();
     service.downloadDecryptedFile('', null);
     expect(window.alert).toHaveBeenCalledWith("No File Extension Selected");
   });
 
-  fit('downloadDecryptedFile() should alert with errorMessage in result', () => {
+  it('downloadDecryptedFile() should alert with errorMessage in result', () => {
     spyOn(window, 'alert').and.callThrough();
     let result = {
       errorMessage: "error"
@@ -64,7 +64,7 @@ describe('DecryptserviceService', () => {
     expect(window.alert).toHaveBeenCalledWith("Looks Like There Was An Error, Please Try Again! :D");
   });
 
-  fit('downloadDecryptedFile() should save file', () => {
+  it('downloadDecryptedFile() should save file', () => {
     spyOn(window, 'alert').and.callThrough();
     spyOn(helper, 'saveAs').and.callThrough();
     let result = {
