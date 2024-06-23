@@ -14,10 +14,15 @@ describe('ThumbnailComponent', () => {
 
     fixture = TestBed.createComponent(ThumbnailComponent);
     component = fixture.componentInstance;
+    component.thumbnailDetails = {
+        step: 1,
+        photo: '/screenshot1.jpg',
+        details: 'First, go to the Decrypter Tool',
+      };
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  fit('should create', () => {
     expect(component).toBeTruthy();
   });
 });
