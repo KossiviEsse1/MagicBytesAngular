@@ -31,11 +31,11 @@ describe('DecrypterToolComponent', () => {
     fixture.detectChanges();
   });
 
-  fit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('handleDataFromChild() should update decryptForm with values', () => {
+  it('handleDataFromChild() should update decryptForm with values', () => {
     let magicByte: MagicByte = {
       ascii: "....",
       description: "RedHat Package Manager (RPM) package",
@@ -48,14 +48,14 @@ describe('DecrypterToolComponent', () => {
     expect(component.decryptForm.controls.fileExtension.value).toEqual("rpm");
   });
 
-  fit('handleDataFromChild() with empty value should empty decryptForm', () => {
+  it('handleDataFromChild() with empty value should empty decryptForm', () => {
     let magicByte: MagicByte = {};
     component.handleDataFromChild(magicByte)
     expect(component.decryptForm.controls.fileMagicBytes.value).toEqual("");
     expect(component.decryptForm.controls.fileExtension.value).toEqual("");
   });
 
-  fit('uploadFile() patches decryptForm with HexString', () => {
+  it('uploadFile() patches decryptForm with HexString', () => {
     let fakeFile = new Blob(["foo"], {type: "text/plain"});
     let event = {
       target: {
@@ -71,7 +71,7 @@ describe('DecrypterToolComponent', () => {
     expect(component.decryptForm.controls.fileHexString.value).toEqual('');
   });
 
-  fit('createDecryptedFile() should create and download Decrypted File', () => {
+  it('createDecryptedFile() should create and download Decrypted File', () => {
     DecryptserviceeServiceStub.decryptFile.and.returnValue(of({}));
     component.createDecryptedFile();
     expect(DecryptserviceeServiceStub.downloadDecryptedFile).toHaveBeenCalled();
