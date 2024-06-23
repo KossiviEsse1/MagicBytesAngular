@@ -73,6 +73,7 @@ describe('DecrypterToolComponent', () => {
 
   it('createDecryptedFile() should create and download Decrypted File', () => {
     DecryptserviceeServiceStub.decryptFile.and.returnValue(of({}));
+    DecryptserviceeServiceStub.downloadDecryptedFile.and.callFake(function(){});
     component.createDecryptedFile();
     expect(DecryptserviceeServiceStub.downloadDecryptedFile).toHaveBeenCalled();
   });
