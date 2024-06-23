@@ -52,4 +52,4 @@ jobs:
       - name: Copy to S3 Bucket
         run: |
           aws s3 cp ./dist/magic-bytes/3rdpartylicenses.txt s3://xor.decrypter/
-          aws s3 cp ./dist/magic-bytes/browser/* s3://xor.decrypter/
+          aws s3 cp ./dist/magic-bytes/browser/ s3://xor.decrypter/ --recursive
