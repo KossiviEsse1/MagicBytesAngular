@@ -53,3 +53,5 @@ jobs:
         run: |
           aws s3 cp ./dist/magic-bytes/3rdpartylicenses.txt s3://xor.decrypter/
           aws s3 cp ./dist/magic-bytes/browser/ s3://xor.decrypter/ --recursive
+          aws s3 cp ./dist/magic-bytes/3rdpartylicenses.txt s3://xorfiledecrypter.com/
+          aws s3 cp ./dist/magic-bytes/browser/ s3://xorfiledecrypter.com/ --recursive
