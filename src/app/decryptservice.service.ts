@@ -5,6 +5,7 @@ import { saveAs } from 'file-saver'
 
 const httpOptions = {
   headers: new HttpHeaders({
+    'Content-Type':  'application/json',
   })
 };
 
