@@ -66,6 +66,15 @@ export class DecryptserviceService {
     return this.http.post(this.baseURL, params, httpOptions);
   }
 
+  encryptFile(data_: any){
+    let params = {
+      key: "fileEncrypter",
+      fileHex: data_.controls.fileHexString.value,
+      magicBytes: data_.controls.fileMagicBytes.value
+    };
+    return this.http.post(this.baseURL, params, httpOptions);
+  }
+
   downloadDecryptedFile(result: any, fileExtension: string | null): void {
     if(fileExtension == null) {
       alert("No File Extension Selected");
@@ -77,6 +86,18 @@ export class DecryptserviceService {
       let blob = this.convertHexStringToBlob(hexString, fileMimeType);
       saveAs(blob, "YourFile"+fileExtension);
     }
+  }
 
+  downloadEncryptedFile(result: any, fileExtension: string | null): void {
+    if(fileExtension == null) {
+      alert("No File Extension Selected");
+    } else if(result['errorMessage']){
+      alert("Looks Like There Was An Error, Please Try Again! :D");
+    } else {
+      let fileMimeType: string = this.fileExtensionMimeTypeMap[fileExtension];
+      var hexString = result["body"]["event-fileHex"];
+      let blob = this.convertHexStringToBlob(hexString, fileMimeType);
+      saveAs(blob, "YourFile"+fileExtension +".enc");
+    }
   }
 }
