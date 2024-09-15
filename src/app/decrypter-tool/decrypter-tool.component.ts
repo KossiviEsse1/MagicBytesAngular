@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { MagicByteTableComponent } from "../magic-byte-table/magic-byte-table.component";
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MagicByte } from '../magic-byte';
 import { DecryptserviceService } from '../decryptservice.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-decrypter-tool',
@@ -28,7 +29,9 @@ import { DecryptserviceService } from '../decryptservice.service';
     styleUrl: './decrypter-tool.component.css',
     imports: [MagicByteTableComponent, ReactiveFormsModule]
 })
-export class DecrypterToolComponent {
+export class DecrypterToolComponent implements OnDestroy{
+  subscriptions$ = new Subscription();
+
   decryptForm = new FormGroup({
     fileMagicBytes: new FormControl(''),
     fileHexString: new FormControl(''),
@@ -37,6 +40,10 @@ export class DecrypterToolComponent {
   disabled = true;
 
   constructor(private decrypterService: DecryptserviceService) {}
+
+  ngOnDestroy(): void {
+    this.subscriptions$.unsubscribe();
+  }
 
   handleDataFromChild(event: MagicByte) {
     if(Object.keys(event).length !== 0) {
@@ -77,12 +84,13 @@ export class DecrypterToolComponent {
   }
 
   createDecryptedFile() {
-    this.decrypterService.decryptFile(this.decryptForm).subscribe(
-      res => {
-        this.decrypterService
-        .downloadDecryptedFile(res, "."+this.decryptForm.controls.fileExtension.value)
-      }
+    this.subscriptions$.add(
+      this.decrypterService.decryptFile(this.decryptForm).subscribe(
+        res => {
+          this.decrypterService
+          .downloadDecryptedFile(res, "."+this.decryptForm.controls.fileExtension.value)
+        }
+      )
     )
   }
-
 }
